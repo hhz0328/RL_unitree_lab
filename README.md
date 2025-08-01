@@ -5,10 +5,15 @@
 [![License](https://img.shields.io/badge/license-Apache2.0-yellow.svg)](https://opensource.org/license/apache-2-0)
 
 ## git部署
+推送
 ```
 git add .
 git commit -m "your message"
 git push
+```
+拉取
+```
+git pull origin main
 ```
 
 ## Overview
