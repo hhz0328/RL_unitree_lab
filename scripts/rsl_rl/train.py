@@ -32,8 +32,9 @@ parser.add_argument(
 # 添加RSL-RL命令行参数
 cli_args.add_rsl_rl_args(parser)
 # append AppLauncher cli args
-# 添加AppLauncher命令行参数
+# 添加AppLauncher（Isaac Sim 模拟器的应用启动器）命令行参数
 AppLauncher.add_app_launcher_args(parser)
+# 解析命令行参数
 args_cli, hydra_args = parser.parse_known_args()
 
 # always enable cameras to record video
@@ -54,7 +55,6 @@ import platform
 
 from packaging import version
 
-# for distributed training, check minimum supported rsl-rl version
 # 对于分布式训练，检查最低支持的rsl-rl版本
 RSL_RL_VERSION = "2.3.1"
 installed_version = metadata.version("rsl-rl-lib")
