@@ -5,7 +5,7 @@
 
 from isaaclab.utils import configclass
 from isaaclab_rl.rsl_rl import RslRlOnPolicyRunnerCfg, RslRlPpoActorCriticCfg, RslRlPpoAlgorithmCfg
-
+# 算法执行器注册位置
 
 @configclass
 class BasePPORunnerCfg(RslRlOnPolicyRunnerCfg):
@@ -14,12 +14,14 @@ class BasePPORunnerCfg(RslRlOnPolicyRunnerCfg):
     save_interval = 100
     experiment_name = ""  # same as task name
     empirical_normalization = False
+    # 策略网络配置
     policy = RslRlPpoActorCriticCfg(
         init_noise_std=1.0,
         actor_hidden_dims=[512, 256, 128],
         critic_hidden_dims=[512, 256, 128],
         activation="elu",
     )
+    # PPO算法配置
     algorithm = RslRlPpoAlgorithmCfg(
         value_loss_coef=1.0,
         use_clipped_value_loss=True,

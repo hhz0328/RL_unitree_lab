@@ -1,6 +1,7 @@
 ##
 # Register Gym environments.
 ##
+# 任务注册的自动加载
 
 from isaaclab_tasks.utils import import_packages
 

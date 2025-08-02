@@ -1,8 +1,9 @@
 import gymnasium as gym
+# 主要注册文件
 
 gym.register(
-    id="Unitree-G1-29dof-Velocity",
-    entry_point="isaaclab.envs:ManagerBasedRLEnv",
+    id="Unitree-G1-29dof-Velocity", # 任务ID
+    entry_point="isaaclab.envs:ManagerBasedRLEnv", # 环境入口点
     disable_env_checker=True,
     kwargs={
         "env_cfg_entry_point": f"{__name__}.velocity_env_cfg:RobotEnvCfg",
@@ -11,8 +12,8 @@ gym.register(
 )
 
 gym.register(
-    id="Unitree-G1-29dof-Velocity-Play",
-    entry_point="isaaclab.envs:ManagerBasedRLEnv",
+    id="Unitree-G1-29dof-Velocity-Play", # 任务ID
+    entry_point="isaaclab.envs:ManagerBasedRLEnv", # 环境入口点
     disable_env_checker=True,
     kwargs={
         "env_cfg_entry_point": f"{__name__}.velocity_env_cfg:RobotPlayEnvCfg",
