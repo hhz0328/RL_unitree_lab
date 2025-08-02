@@ -172,10 +172,13 @@ def main(env_cfg: ManagerBasedRLEnvCfg | DirectRLEnvCfg | DirectMARLEnvCfg, agen
     """
     env：
         环境对象，用于与 agent 交互。
+
     agent_cfg.to_dict()：
         将 agent 的配置（如超参数、网络结构、学习率等）转换成字典形式，传入 runner 使用。
+
     log_dir=log_dir：
         日志目录，用于存储训练过程中的各种文件（如模型、日志、视频等）。
+        
     device=agent_cfg.device：
         指定运行算法和训练的设备（GPU或CPU）。
     """
