@@ -169,6 +169,16 @@ def main(env_cfg: ManagerBasedRLEnvCfg | DirectRLEnvCfg | DirectMARLEnvCfg, agen
 
     # 2. 从rsl-rl创建算法执行器
     runner = OnPolicyRunner(env, agent_cfg.to_dict(), log_dir=log_dir, device=agent_cfg.device)
+    """
+    env：
+        环境对象，用于与 agent 交互。
+    agent_cfg.to_dict()：
+        将 agent 的配置（如超参数、网络结构、学习率等）转换成字典形式，传入 runner 使用。
+    log_dir=log_dir：
+        日志目录，用于存储训练过程中的各种文件（如模型、日志、视频等）。
+    device=agent_cfg.device：
+        指定运行算法和训练的设备（GPU或CPU）。
+    """
     # 将git状态写入日志
     runner.add_git_repo_to_log(__file__)
     # 加载检查点
@@ -186,6 +196,20 @@ def main(env_cfg: ManagerBasedRLEnvCfg | DirectRLEnvCfg | DirectMARLEnvCfg, agen
 
     # 3. 开始训练
     runner.learn(num_learning_iterations=agent_cfg.max_iterations, init_at_random_ep_len=True)
+    """
+    num_learning_iterations=agent_cfg.max_iterations：
+        表示训练总共运行多少个 学习迭代（不是环境步数，而是“训练周期”）。
+            每次迭代会：
+            与环境交互（比如采样一个 episode 或 rollout N 个步长）
+            用经验数据训练策略网络一次或多次
+
+    init_at_random_ep_len=True：
+        表示在每个 episode 开始时，不从 episode 的时间步 t = 0 开始，而是从一个随机的中间时间步开始（比如 t = 50）。
+            常用于：
+            让 agent 在训练初期暴露更多“中后期”的状态，提升泛化能力
+            避免每次都从统一状态起步（探索更充分）
+            在 locomotion 等任务中避免 agent 每次都从起步站立开始训练
+    """
 
     # 关闭模拟器
     env.close()
