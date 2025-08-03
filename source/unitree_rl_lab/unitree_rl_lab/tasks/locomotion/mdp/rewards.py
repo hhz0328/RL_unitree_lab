@@ -448,7 +448,7 @@ def joint_mirror(env: ManagerBasedRLEnv, asset_cfg: SceneEntityCfg, mirror_joint
             dim=-1,
         )
     
-    # 归一化奖励
+    # 归一化奖励（防止某些环境中关节对多影响权重）
     reward *= 1 / len(mirror_joints) if len(mirror_joints) > 0 else 0
     
     return reward
