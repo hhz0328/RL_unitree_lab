@@ -14,17 +14,17 @@ class BasePPORunnerCfg(RslRlOnPolicyRunnerCfg):
     这个类定义了PPO（Proximal Policy Optimization）算法的所有配置参数，
     包括训练参数、网络结构、算法超参数等。
     
-    继承自RslRlOnPolicyRunnerCfg，专门用于腿式机器人的强化学习训练。
+    继承自RslRlOnPolicyRunnerCfg，专门用于足式机器人的强化学习训练。
     """
     
     # ==================== 训练参数 ====================
     num_steps_per_env = 24          # 每个环境收集的步数
-    max_iterations = 50000          # 最大训练迭代次数
+    max_iterations = 50001          # 最大训练迭代次数
     save_interval = 100             # 模型保存间隔（每100次迭代保存一次）
     experiment_name = ""            # 实验名称（与任务名称相同）
     empirical_normalization = False # 是否使用经验归一化
     
-    # ==================== 策略网络配置 ====================
+    # ==================== Actor策略网络配置 ====================
     policy = RslRlPpoActorCriticCfg(
         # 动作噪声标准差：用于探索的初始噪声大小
         # 较大的值会增加探索，较小的值会减少探索

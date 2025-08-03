@@ -74,13 +74,14 @@ class RobotSceneCfg(InteractiveSceneCfg):
     height_scanner = RayCasterCfg(
         prim_path="{ENV_REGEX_NS}/Robot/torso_link",  # 安装在躯干上
         offset=RayCasterCfg.OffsetCfg(pos=(0.0, 0.0, 20.0)),  # 偏移位置
-        attach_yaw_only=True,                    # 只附加偏航角
-        pattern_cfg=patterns.GridPatternCfg(resolution=0.1, size=[1.6, 1.0]),  # 网格模式
+        attach_yaw_only=True,                    # 只附加偏航角（Yaw）：绕 z 轴旋转
+        pattern_cfg=patterns.GridPatternCfg(resolution=0.1, size=[1.6, 1.0]),  # 网格模式，配置一个二维网格模式（Grid Pattern），常用于生成地形
         debug_vis=False,                         # 调试可视化
         mesh_prim_paths=["/World/ground"],       # 检测地面网格
     )
     
     # 接触力传感器：检测机器人各部分的接触
+    # 整个机器人（29 个链节、脚踝、手臂、躯干……）都会被同一个 ContactSensor 监听
     contact_forces = ContactSensorCfg(
         prim_path="{ENV_REGEX_NS}/Robot/.*",     # 检测所有机器人部件
         history_length=3,                        # 历史长度
@@ -111,7 +112,7 @@ class EventCfg:
             "static_friction_range": (0.3, 1.0),    # 静摩擦系数范围
             "dynamic_friction_range": (0.3, 1.0),   # 动摩擦系数范围
             "restitution_range": (0.0, 0.0),        # 弹性系数范围
-            "num_buckets": 64,                      # 分桶数量
+            "num_buckets": 64,                      # 离散值区间数量（把静摩擦、动摩擦等连续参数空间划分为 64 个离散值区间，用来做随机采样）
         },
     )
 
