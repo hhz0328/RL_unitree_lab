@@ -19,6 +19,7 @@ git pull origin main
 ## 修改的依赖
 来自天工人形
 ```
+cd ..
 cd rsl_rl
 pip install -e .
 ```
