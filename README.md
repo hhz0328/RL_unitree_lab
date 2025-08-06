@@ -16,6 +16,13 @@ git push
 git pull origin main
 ```
 
+## 修改的依赖
+来自天工人形
+```
+cd rsl_rl
+pip install -e .
+```
+
 ## Overview
 
 This project provides a set of reinforcement learning environments for Unitree robots, built on top of [IsaacLab](https://github.com/isaac-sim/IsaacLab).
